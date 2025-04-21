@@ -46,7 +46,7 @@ const Editor = () => {
     try {
       const response = await openai.responses.create({
         model: 'gpt-4.1',
-        input: `Given the current geometry data: ${JSON.stringify(geometryData)}, modify it based on the following instruction: ${instruction}, ony respond with json data of modified geometry no other text. Use as many number of vertices and indices as needed to describe the geometry.`,
+        input: `Given the current geometry data: ${JSON.stringify(geometryData)}, modify it based on the following instruction: ${instruction}, only respond with json data of modified geometry no other text. Use as many number of vertices and indices as needed to describe the geometry.`,
       });
       console.log('OpenAI Response:', response);
       const responseText = response.output[0].content[0].text.trim();
@@ -102,7 +102,7 @@ const Editor = () => {
           <pointLight position={[10, 10, 10]} />
           {/* <Grid args={[100, 100]} color="white" /> */}
           <mesh geometry={geometry} position={[0, 0.5, 0]}>
-            <meshStandardMaterial color="orange" wireframe={geometryData.wireframe} wireframeLinewidth={3} />
+            <meshStandardMaterial color="orange" wireframe={geometryData.wireframe} wireframeLinewidth={3} side={THREE.DoubleSide}/>
           </mesh>
           <OrbitControls />
         </Canvas>
